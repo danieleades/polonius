@@ -39,7 +39,7 @@ where
     println!("{}", actual_text);
 
     println!("# diff");
-    for diff in diff::lines(&expected_text, &actual_text) {
+    for diff in diff::lines(expected_text, &actual_text) {
         match diff {
             diff::Result::Left(l) => println!("-{}", l),
             diff::Result::Both(l, _) => println!(" {}", l),

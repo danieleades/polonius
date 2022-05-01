@@ -526,10 +526,10 @@ fn compare_errors<Loan: Atom, Point: Atom>(
 
     let mut differ = false;
     for point in points {
-        let mut naive_errors = all_naive_errors.get(&point).cloned().unwrap_or_default();
+        let mut naive_errors = all_naive_errors.get(point).cloned().unwrap_or_default();
         naive_errors.sort();
 
-        let mut opt_errors = all_opt_errors.get(&point).cloned().unwrap_or_default();
+        let mut opt_errors = all_opt_errors.get(point).cloned().unwrap_or_default();
         opt_errors.sort();
 
         for err in naive_errors.iter() {

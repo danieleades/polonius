@@ -259,7 +259,7 @@ pub(super) fn compute<T: FactTypes>(
             // "intermediate" `origin2` is dead at `point2`.
             dying_can_reach_1.from_antijoin(
                 &dying_can_reach_o2q,
-                &origin_live_on_entry_rel,
+                origin_live_on_entry_rel,
                 |&(origin2, point2), &(origin1, point1)| ((origin2, point1), (origin1, point2)),
             );
             dying_can_reach_o2q.from_join(
@@ -341,7 +341,7 @@ pub(super) fn compute<T: FactTypes>(
             //   !origin_live_on_entry(origin, point).
             dead_borrow_region_can_reach_root.from_antijoin(
                 &loan_issued_at_op,
-                &origin_live_on_entry_rel,
+                origin_live_on_entry_rel,
                 |&(origin, point), &loan| ((origin, point), loan),
             );
 
@@ -361,7 +361,7 @@ pub(super) fn compute<T: FactTypes>(
             );
             dead_borrow_region_can_reach_dead.from_antijoin(
                 &dead_borrow_region_can_reach_dead_1,
-                &origin_live_on_entry_rel,
+                origin_live_on_entry_rel,
                 |&(origin2, point), &loan| ((origin2, point), loan),
             );
 

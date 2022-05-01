@@ -21,7 +21,7 @@ fn test_facts(all_facts: &AllFacts, algorithms: &[Algorithm]) {
     // ones".
     let insensitive = Output::compute(all_facts, Algorithm::LocationInsensitive, false);
     for (naive_point, naive_loans) in &naive.errors {
-        match insensitive.errors.get(&naive_point) {
+        match insensitive.errors.get(naive_point) {
             Some(insensitive_loans) => {
                 for naive_loan in naive_loans {
                     if !insensitive_loans.contains(naive_loan) {
@@ -193,7 +193,7 @@ fn no_subset_symmetries_exist() -> Result<(), Box<dyn Error>> {
     let subset_symmetries_exist = |output: &Output| {
         for (_, subsets) in &output.subset {
             for (origin, origins) in subsets {
-                if origins.contains(&origin) {
+                if origins.contains(origin) {
                     return true;
                 }
             }
