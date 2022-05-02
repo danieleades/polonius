@@ -178,14 +178,9 @@ pub(crate) fn parse_from_program(
 
             // the most common statement effects: mid point effects
             for effect in &statement.effects {
-                match effect {
-                    // TODO: once the parser is revamped for liveness etc, make
-                    // sure to catch the new inputs here!
-                    Effect::Fact(ref fact) => {
-                        // Manually specified facts
-                        emit_fact(&mut facts, fact, mid, tables)
-                    }
-                    _ => {}
+                if let Effect::Fact(ref fact) = effect {
+                    // Manually specified facts
+                    emit_fact(&mut facts, fact, mid, tables)
                 };
             }
 
